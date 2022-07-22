@@ -7,8 +7,10 @@ const auth=require('../middlewares/authMiddleware');
 const admin=require('../middlewares/admin');
 const validateObjectId=require('../middlewares/validateObjectId');
 const Joi=require('joi');
+const {search}=require('../Controller/searchController');
 
 const searchRouter=express.Router();
+
 searchRouter
 .route('/')
 .get(auth,search)

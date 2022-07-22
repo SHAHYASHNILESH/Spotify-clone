@@ -11,10 +11,13 @@ app.use(express.json());
 
 const userRouter=require('./Routers/userRouter');
 app.use('/users',userRouter);
+
 const songRouter=require('./Routers/songRouter');
 app.use('/songs',songRouter);
+
 const playlistRouter=require('./Routers/playlistRouter');
 app.use('/playlist',playlistRouter);
+
 const searchRouter=require('./Routers/searchRouter');
 app.use('/search',searchRouter);
 
