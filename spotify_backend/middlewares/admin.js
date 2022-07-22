@@ -18,7 +18,7 @@ module.exports=(req,res,next)=>{
             if(!validToken.isAdmin){
                 res.json({
                     message:'You dont have access to this content'
-                })
+                });
             }
             req.user=validToken;
             next();

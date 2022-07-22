@@ -1,11 +1,12 @@
 const express=require('express');
-const userRouter=express.Router();
 const {playModel,validate}=require('../models/playModel');
 const bcrypt=require('bcrypt');
 const {createUser,loginUser,getAllUser,getUser,updateUser,deleteUser}=require('../Controller/userController');
 const auth=require('../middlewares/authMiddleware');
 const admin=require('../middlewares/admin');
 const validateObjectId=require('../middlewares/validateObjectId');
+
+const userRouter=express.Router();
 
 userRouter
 .route('/')
@@ -15,22 +16,21 @@ userRouter
 .route('/login')
 .post(loginUser)
 
-// userRouter.use(admin);
+
 userRouter
 .route('/')
 .get(getAllUser)
 
-// userRouter.use(validateObjectId);
-// userRouter.use(auth);
+
 userRouter
 .route('/:id')
-.get(getUser)
-.patch(updateUser)
+.get(validateObjectId,auth,getUser)
+.patch(validateObjectId,auth,updateUser)
 
-// userRouter.use(validateObjectId);
-// userRouter.use(admin);
+
 userRouter
-.route('/:id').delete(deleteUser)
+.route('/:id')
+.delete(validateObjectId,deleteUser)
 
 
-module.exports=userRouter
+module.exports=userRouter;

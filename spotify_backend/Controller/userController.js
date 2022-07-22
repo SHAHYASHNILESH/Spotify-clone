@@ -55,6 +55,7 @@ module.exports.loginUser=async function loginUser(req,res){
             }
             else{
                 const token=user.generateAuthToken();
+                res.cookie('login',token,{httpOnly:true});
                 res.json({
                     message:'User logged in successfully',
                     data:token
@@ -166,3 +167,4 @@ module.exports.deleteUser=async function deleteUser(req,res){
     }
 
 }
+
